@@ -23,6 +23,8 @@ public class Main {
         JButton triangleButton = new JButton("Triangle");
         JButton rhombusButton = new JButton("Rhombus");
         JButton heartButton = new JButton("Heart");
+        JButton trapeziumButton = new JButton("Trapezium");
+        JButton ellipse = new JButton("Ellipse");
 
         // Add action listeners to buttons
 
@@ -89,6 +91,22 @@ public class Main {
             }
         });
 
+        trapeziumButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Trapezium trapezium = new Trapezium();
+            }
+        });
+
+        ellipse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ellipse ellipse = new Ellipse();
+            }
+        });
+
+
+
         frame.add(circleButton);
         frame.add(squareButton);
         frame.add(rectangleButton);
@@ -98,5 +116,7 @@ public class Main {
         frame.add(triangleButton);
         frame.add(rhombusButton);
         frame.add(heartButton);
+        frame.add(trapeziumButton);
+        frame.add(ellipse);
     }
 }
