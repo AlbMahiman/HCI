@@ -145,6 +145,13 @@ public class Square {
             }
         });
 
+        visualize3DButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         frame.add(sideLabel);
         frame.add(sideField);
         frame.add(shapeNameLabel);

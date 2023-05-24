@@ -167,6 +167,13 @@ public class Rectangle {
             }
         });
 
+        visualize3DButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         frame.add(widthLabel);
         frame.add(widthField);
         frame.add(heightLabel);
