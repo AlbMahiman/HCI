@@ -22,7 +22,6 @@ public class Rectangle {
         JFrame frame = new JFrame();
         frame.setVisible(true);
         frame.setSize(600, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         // Create input fields

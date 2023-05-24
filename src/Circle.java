@@ -20,7 +20,6 @@ public class Circle {
         JFrame frame = new JFrame();
         frame.setVisible(true);
         frame.setSize(600,600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
@@ -120,6 +119,7 @@ public class Circle {
 
             }
         });
+
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
