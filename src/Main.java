@@ -118,5 +118,6 @@ public class Main {
         frame.add(heartButton);
         frame.add(trapeziumButton);
         frame.add(ellipse);
+
     }
 }
