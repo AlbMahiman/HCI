@@ -172,9 +172,7 @@ public class Heart {
         frame.add(deleteButton);
     }
 
-    public static void main(String[] args) {
-        new Heart();
-    }
+
 
 
 
