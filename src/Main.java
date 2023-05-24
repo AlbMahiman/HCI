@@ -24,7 +24,8 @@ public class Main {
         JButton rhombusButton = new JButton("Rhombus");
         JButton heartButton = new JButton("Heart");
         JButton trapeziumButton = new JButton("Trapezium");
-        JButton ellipse = new JButton("Ellipse");
+        JButton ellipseButton = new JButton("Ellipse");
+        JButton parallelogramButton = new JButton("Parallelogram");
 
         // Add action listeners to buttons
 
@@ -98,10 +99,16 @@ public class Main {
             }
         });
 
-        ellipse.addActionListener(new ActionListener() {
+        ellipseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Ellipse ellipse = new Ellipse();
+            }
+        });
+        parallelogramButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Parallelogram parallelogram = new Parallelogram();
             }
         });
 
@@ -117,7 +124,8 @@ public class Main {
         frame.add(rhombusButton);
         frame.add(heartButton);
         frame.add(trapeziumButton);
-        frame.add(ellipse);
+        frame.add(ellipseButton);
+        frame.add(parallelogramButton);
 
     }
 }
