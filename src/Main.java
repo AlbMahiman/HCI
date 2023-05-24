@@ -22,6 +22,7 @@ public class Main {
         JButton pentagonButton = new JButton("Pentagon");
         JButton triangleButton = new JButton("Triangle");
         JButton rhombusButton = new JButton("Rhombus");
+        JButton heartButton = new JButton("Heart");
 
         // Add action listeners to buttons
 
@@ -81,6 +82,13 @@ public class Main {
             }
         });
 
+        heartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Heart rhombus = new Heart();
+            }
+        });
+
         frame.add(circleButton);
         frame.add(squareButton);
         frame.add(rectangleButton);
@@ -89,5 +97,6 @@ public class Main {
         frame.add(pentagonButton);
         frame.add(triangleButton);
         frame.add(rhombusButton);
+        frame.add(heartButton);
     }
 }
