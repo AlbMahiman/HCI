@@ -15,8 +15,7 @@ public class Square {
     private JButton editButton;
     private JButton deleteButton;
     private JPanel squarePanel;
-    private Color squareColor;
-
+    private Color squareColor = Color.gray; // Default color
     public Square() {
         JFrame frame = new JFrame();
         frame.setVisible(true);
@@ -140,6 +139,7 @@ public class Square {
                     frame.revalidate();
                     frame.repaint();
                     visualize2DButton.setVisible(true);
+                    visualize3DButton.setVisible(true);
                 }
             }
         });
@@ -147,8 +147,56 @@ public class Square {
         visualize3DButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (sideField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please Insert Side Length of Square");
+                } else if (shapeNameField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please Insert Shape Name");
+                } else {
+
+                    squarePanel = new JPanel() {
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            super.paintComponent(g);
+                            Graphics2D g2d = (Graphics2D) g;
+                            double side = Double.parseDouble(sideField.getText());
+                            int length = (int) side;
+                            int x = (getWidth() - length) / 2;
+                            int y = (getHeight() - length) / 2;
+                            g2d.setColor(squareColor);
+
+                            // Draw the front face of the square
+                            g2d.fillRect(x, y, length, length);
+
+                            // Draw the side face of the square
+                            int sideShift = length / 2;
+                            Polygon sideFace = new Polygon();
+                            sideFace.addPoint(x + length, y);
+                            sideFace.addPoint(x + length + sideShift, y - sideShift);
+                            sideFace.addPoint(x + length + sideShift, y - sideShift + length);
+                            sideFace.addPoint(x + length, y + length);
+                            g2d.fillPolygon(sideFace);
+
+                            // Draw the top face of the square
+                            g2d.setColor(squareColor.darker()); // Use a darker shade of the same color
+                            Polygon topFace = new Polygon();
+                            topFace.addPoint(x, y);
+                            topFace.addPoint(x + length, y);
+                            topFace.addPoint(x + length + sideShift, y - sideShift);
+                            topFace.addPoint(x + sideShift, y - sideShift);
+                            g2d.fillPolygon(topFace);
+                        }
+                    };
+                    squarePanel.setPreferredSize(new Dimension(400, 400));
+                    frame.add(squarePanel);
+                    frame.revalidate();
+                    frame.repaint();
+
+                    visualize2DButton.setVisible(false);
+                    visualize3DButton.setVisible(false);
+                }
             }
         });
+
 
         frame.add(sideLabel);
         frame.add(sideField);
