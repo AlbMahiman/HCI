@@ -3,6 +3,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.sun.prism.PhongMaterial;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.shape.Sphere;
+
+import javafx.scene.paint.Material;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Sphere;
+
+
+
+
+
 public class Circle {
     private JTextField radiusField;
     private JTextField shapeNameField;
@@ -16,12 +31,23 @@ public class Circle {
     private JButton deleteButton;
     private JPanel circlePanel;
     private Color circleColor;
+
+
     Circle(){
         JFrame frame = new JFrame();
         frame.setVisible(true);
         frame.setSize(600,600);
         frame.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+        // Create Swing JPanel for JavaFX integration
+        circlePanel = new JPanel();
+        circlePanel.setLayout(new BorderLayout());
+
+        // Create JavaFX components
+        JFXPanel fxPanel;
+        fxPanel = new JFXPanel();
+        Group root3D = new Group();
+        Scene scene3D = new Scene(root3D, 600, 600, true);
 
         // Create input fields
         JLabel radiusLabel = new JLabel("Radius:");
@@ -158,9 +184,20 @@ public class Circle {
         visualize3DButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if (radiusField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please insert the radius of the sphere.");
+                } else {
+                    try {
+                        double radius = Double.parseDouble(radiusField.getText());
+                        // Call method to visualize 3D sphere here
+                        generate3DSphere(radius);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(frame, "Invalid input for radius.");
+                    }
+                }
             }
         });
+
 
         frame.add(radiusLabel);
         frame.add(radiusField);
@@ -176,4 +213,35 @@ public class Circle {
         frame.add(deleteButton);
 
     }
+
+    private void generate3DSphere(double radius) {
+        JFrame sphereFrame = new JFrame();
+        sphereFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        sphereFrame.setSize(600, 600);
+        sphereFrame.setLocationRelativeTo(null);
+
+        JFXPanel fxPanel = new JFXPanel();
+        sphereFrame.add(fxPanel);
+
+        Platform.runLater(() -> {
+            Group root3D = new Group();
+            Scene scene3D = new Scene(root3D, 600, 600, true);
+
+            Sphere sphere = new Sphere(radius);
+            sphere.setTranslateX(scene3D.getWidth() / 2);
+            sphere.setTranslateY(scene3D.getHeight() / 2);
+            sphere.setTranslateZ(scene3D.getWidth() / 2);
+
+            //PhongMaterial material = new PhongMaterial();
+            //material.setDiffuseColor(Color.BLUE);
+            //sphere.setMaterial((Material) material);
+
+            root3D.getChildren().add(sphere);
+
+            fxPanel.setScene(scene3D);
+        });
+
+        sphereFrame.setVisible(true);
+    }
+
 }

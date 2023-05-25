@@ -16,7 +16,7 @@ public class Rectangle {
     private JButton editButton;
     private JButton deleteButton;
     private JPanel rectanglePanel;
-    private Color rectangleColor;
+    private Color rectangleColor = Color.gray; // Default color
 
     public Rectangle() {
         JFrame frame = new JFrame();
@@ -169,7 +169,48 @@ public class Rectangle {
         visualize3DButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (widthField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please Insert Width of Rectangle");
+                } else if (heightField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please Insert Height of Rectangle");
+                } else if (shapeNameField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please Insert Shape Name");
+                } else {
+                    rectanglePanel = new JPanel() {
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            super.paintComponent(g);
+                            Graphics2D g2d = (Graphics2D) g;
+                            double width = Double.parseDouble(widthField.getText());
+                            double height = Double.parseDouble(heightField.getText());
+                            int rectWidth = (int) width;
+                            int rectHeight = (int) height;
+                            int x = (getWidth() - rectWidth) / 2;
+                            int y = (getHeight() - rectHeight) / 2;
 
+                            // Draw front face
+                            g2d.setColor(rectangleColor);
+                            g2d.fillRect(x, y, rectWidth, rectHeight);
+
+                            // Draw side face
+                            int[] xPoints = {x + rectWidth, x + rectWidth + 20, x + rectWidth + 20, x + rectWidth};
+                            int[] yPoints = {y, y - 20, y + rectHeight - 20, y + rectHeight};
+                            g2d.fillPolygon(xPoints, yPoints, 4);
+
+                            // Draw top face
+                            g2d.setColor(rectangleColor.darker());
+                            int[] xPointsTop = {x, x + 20, x + rectWidth + 20, x + rectWidth};
+                            int[] yPointsTop = {y, y - 20, y - 20, y};
+                            g2d.fillPolygon(xPointsTop, yPointsTop, 4);
+                        }
+                    };
+                    rectanglePanel.setPreferredSize(new Dimension(400, 400));
+                    frame.add(rectanglePanel);
+                    frame.revalidate();
+                    frame.repaint();
+
+                    visualize3DButton.setVisible(false);
+                }
             }
         });
 

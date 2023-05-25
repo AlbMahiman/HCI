@@ -1,3 +1,8 @@
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +31,57 @@ public class Main {
         JButton trapeziumButton = new JButton("Trapezium");
         JButton ellipseButton = new JButton("Ellipse");
         JButton parallelogramButton = new JButton("Parallelogram");
+
+
+        Dimension buttonSize = new Dimension(500, 50);
+        circleButton.setPreferredSize(buttonSize);
+        squareButton.setPreferredSize(buttonSize);
+        rectangleButton.setPreferredSize(buttonSize);
+        starButton.setPreferredSize(buttonSize);
+        hexagonButton.setPreferredSize(buttonSize);
+        pentagonButton.setPreferredSize(buttonSize);
+        triangleButton.setPreferredSize(buttonSize);
+        rhombusButton.setPreferredSize(buttonSize);
+        heartButton.setPreferredSize(buttonSize);
+        trapeziumButton.setPreferredSize(buttonSize);
+        ellipseButton.setPreferredSize(buttonSize);
+        parallelogramButton.setPreferredSize(buttonSize);
+
+        //circleButton.setFont(buttonFont);
+        circleButton.setBackground(new Color(173, 216, 230));
+
+        //squareButton.setFont(buttonFont);
+        squareButton.setBackground(new Color(173, 216, 230));
+
+        //rectangleButton.setFont(buttonFont);
+        rectangleButton.setBackground(new Color(173, 216, 230));
+
+        //starButton.setFont(buttonFont);
+        starButton.setBackground(new Color(173, 216, 230));
+
+        //hexagonButton.setFont(buttonFont);
+        hexagonButton.setBackground(new Color(173, 216, 230));
+
+        //pentagonButton.setFont(buttonFont);
+        pentagonButton.setBackground(new Color(173, 216, 230));
+
+        //triangleButton.setFont(buttonFont);
+        triangleButton.setBackground(new Color(173, 216, 230));
+
+        //rhombusButton.setFont(buttonFont);
+        rhombusButton.setBackground(new Color(173, 216, 230));
+
+        //heartButton.setFont(buttonFont);
+        heartButton.setBackground(new Color(173, 216, 230));
+
+        //trapeziumButton.setFont(buttonFont);
+        trapeziumButton.setBackground(new Color(173, 216, 230));
+
+        //ellipseButton.setFont(buttonFont);
+        ellipseButton.setBackground(new Color(173, 216, 230));
+
+        //parallelogramButton.setFont(buttonFont);
+        parallelogramButton.setBackground(new Color(173, 216, 230));
 
         // Add action listeners to buttons
 
@@ -114,6 +170,7 @@ public class Main {
 
 
 
+
         frame.add(circleButton);
         frame.add(squareButton);
         frame.add(rectangleButton);
@@ -128,4 +185,5 @@ public class Main {
         frame.add(parallelogramButton);
 
     }
+
 }
